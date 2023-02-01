@@ -1,0 +1,4 @@
+^y$iprint("A=", pa)^
+print("^y$iprint("A=", pa)^=", ^y$iprint("A=", pa)^)
+
+
