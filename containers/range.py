@@ -38,16 +38,27 @@ def range(a, b=None, c=None):
     of this automation process,
     but the resulting code is much longer and harder to read/write.
     '''
-    s_num = a
+    start_num = a
     step_num = c
-    e_num = b
-    # if there's no step num
-    if not step_num:
-        step_num = 1
-    # if there's no end num
-    if not e_num:
-        e_num = s_num
-        s_num = 0
-    while s_num < e_num:
-        yield s_num
-        s_num += step_num
+    end_num = b
+    # if there's no step num and no end num
+    if end_num is None and step_num is None:
+        res = 0
+        while res < start_num:
+            yield res
+            res += 1
+    elif step_num is None:
+        res = start_num
+        while res < end_num:
+            yield res
+            res += 1
+    else:
+        res = start_num
+        if step_num > 0:
+            while res < end_num:
+                yield res
+                res += step_num
+        else:
+            while res > end_num:
+                yield res
+                res += step_num
