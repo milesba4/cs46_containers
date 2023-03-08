@@ -75,6 +75,12 @@ class Fib:
         '''
         return FibIter(self.n)
 
+    def __repr__(self):
+        if self.n is not None:
+            return f'Fib({self.n})'
+        else:
+            return 'Fib()'
+
 
 class FibIter:
     '''
@@ -92,11 +98,21 @@ class FibIter:
         Return the "next" factorial number in our sequence.
         The factorial number corresponding to position self.i
         '''
-        if self.i >= self.n:
-            # we're at the end of the iteration
-            # if we never raise StopIteration,
-            # then the loop will go on forever
-            raise StopIteration
+        if self.n is not None:
+            if self.i >= self.n:
+                # we're at the end of the iteration
+                # if we never raise StopIteration,
+                # then the loop will go on forever
+                raise StopIteration
+            elif self.i == 0:
+                self.i += 1
+                return 1
+            else:
+                self.f2 = self.f1 + self.f0
+                self.f0 = self.f1
+                self.f1 = self.f2
+                self.i += 1
+                return self.f2
         elif self.i == 0:
             self.i += 1
             return 1
@@ -107,17 +123,28 @@ class FibIter:
             self.i += 1
             return self.f2
 
-    def fib_yield(n=None):
-        '''
-        This function returns a generator that computes
-        the first n fibonacci numbers.
-        If n is None, then the generator is infinite.
-        '''
-        if n < 2:
-            yield 1
-        f0 = 1
-        f1 = 1
-        for i in range(n - 1):
+
+def fib_yield(n=None):
+    '''
+    This function returns a generator that computes
+    the first n fibonacci numbers.
+    If n is None, then the generator is infinite.
+    '''
+    f0 = 1
+    f1 = 1
+    if n is not None:
+        for i in range(n):
+            if i < 2:
+                yield 1
+            else:
+                f2 = f1 + f0
+                f0 = f1
+                f1 = f2
+                yield f2
+    else:
+        yield 1
+        yield 1
+        while True:
             f2 = f1 + f0
             f0 = f1
             f1 = f2
