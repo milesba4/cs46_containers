@@ -13,11 +13,11 @@ class Node():
     so you should get familiar with how to visualize these strings.
     '''
 
-    def __init__(self, value, left=None, right=None):
+    def __init__(self, value, left=None, right=None, parent = None):
         self.value = value
         self.left = left    # NOTE: left should always be a Node
         self.right = right  # NOTE: right should always be a Node
-
+        self.parent = parent
     def __str__(self):
         ret = '('
         ret += str(self.value)
@@ -135,9 +135,9 @@ class BinaryTree():
         Implement this function by modifying the _print functions above.
         '''
         output = []
+        print("traversal=", type(traversal), traversal)
         if start:
             output.append(start.value)
-            print("traversal=", type(traversal), traversal)
             output += self.preorder(start.left, traversal)
             output += self.preorder(start.right, traversal)
         return output
