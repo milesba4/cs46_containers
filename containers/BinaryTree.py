@@ -13,11 +13,11 @@ class Node():
     so you should get familiar with how to visualize these strings.
     '''
 
-    def __init__(self, value, left=None, right=None, parent = None):
+    def __init__(self, value, left=None, right=None):
         self.value = value
         self.left = left    # NOTE: left should always be a Node
         self.right = right  # NOTE: right should always be a Node
-        self.parent = parent
+
     def __str__(self):
         ret = '('
         ret += str(self.value)
