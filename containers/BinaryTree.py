@@ -137,7 +137,6 @@ class BinaryTree():
         output = []
         if start:
             output.append(start.value)
-            print("traversal=", type(traversal), traversal)
             output += self.preorder(start.left, traversal)
             output += self.preorder(start.right, traversal)
         return output
