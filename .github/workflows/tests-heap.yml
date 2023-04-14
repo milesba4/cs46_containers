@@ -1,4 +1,4 @@
-name: tests-AVLTree
+name: tests-heap
 on:
   push:
     branches: ['*']
@@ -8,7 +8,7 @@ jobs:
   tests:
     strategy:
       matrix:
-        python: [3.6, 3.7, 3.8, 3.9]
+        python: [3.7, 3.8, 3.9]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,9 +23,9 @@ jobs:
       - name: Run linter
         run: |
           pip3 install flake8 pep8-naming
-          flake8 containers/AVLTree.py --ignore=E501
+          flake8 containers/Heap.py --ignore=E501
       - name: Run tests
         run: |
-          python -m pytest tests/test_AVLTree.py
+          python -m pytest tests/test_Heap.py
 
 
